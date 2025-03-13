@@ -15,6 +15,7 @@ namespace ThursdayMarket2025.Controllers
 
         public IActionResult Index()
         {
+            Console.WriteLine("xd");
             return View();
         }
 
