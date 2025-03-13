@@ -18,6 +18,12 @@ namespace ThursdayMarket2025.Controllers
             return View();
         }
 
+        public IActionResult Lmao()
+        {
+            return View();
+
+        }
+
         public IActionResult Privacy()
         {
             return View();
