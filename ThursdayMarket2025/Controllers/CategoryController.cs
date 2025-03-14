@@ -27,9 +27,14 @@ namespace ThursdayMarket2025.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(Category obj)
         {
-            await _context.Categories.AddAsync(obj);
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Category");
+            if (ModelState.IsValid)
+            {
+                await _context.Categories.AddAsync(obj);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Category");
+            }
+ 
+            return View();
         }
     }
 }
