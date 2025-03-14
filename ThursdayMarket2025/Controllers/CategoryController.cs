@@ -31,6 +31,8 @@ namespace ThursdayMarket2025.Controllers
             {
                 await _context.Categories.AddAsync(obj);
                 _context.SaveChanges();
+
+                TempData["success"] = "Category added successfully";
                 return RedirectToAction("Index", "Category");
             }
  
@@ -48,6 +50,7 @@ namespace ThursdayMarket2025.Controllers
                 return NotFound();
             }
 
+
             return View(categoryToUpdate);
         }
         [HttpPost]
@@ -55,32 +58,40 @@ namespace ThursdayMarket2025.Controllers
         {
             Category categoryToUpdate = await _context.Categories.FindAsync(obj.Id);
 
-            if (obj.Id == null || obj.Id == 0)
+            if (categoryToUpdate.Id == null || categoryToUpdate.Id == 0)
             {
+                TempData["error"] = "Error Category not found";
                 return NotFound("");
             }
 
+            // TempData["error"] = "Testing Error";
             categoryToUpdate.Name = obj.Name;
             categoryToUpdate.DisplayOrder = obj.DisplayOrder;
 
-            _context.Update(obj);
+            _context.Update(categoryToUpdate);
             await _context.SaveChangesAsync();
+            TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index", "Category");
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
             Category categoryToDelete = await _context.Categories.FindAsync(id);
             return View(categoryToDelete);
 
         }
-        [HttpPost]
-        public async Task<IActionResult> Delete(Category obj)
+        [HttpPost, ActionName("Delete")]
+
+        public async Task<IActionResult> DeletePOST(int? id)
         {
-             _context.Categories.Remove(obj);
+            Category CategoryToDelete = await _context.Categories.FindAsync(id);
+
+            if (CategoryToDelete == null) {
+                return NotFound();
+            }
+             _context.Categories.Remove(CategoryToDelete);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index","Category");
-
         }
     }
 }
