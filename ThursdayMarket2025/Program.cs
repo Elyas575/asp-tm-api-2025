@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ThursdayMarket2025.Data;
+using ThursdayMarket.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

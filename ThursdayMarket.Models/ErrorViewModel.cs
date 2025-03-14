@@ -1,4 +1,4 @@
-namespace ThursdayMarket2025.Models
+namespace ThursdayMarket.Models
 {
     public class ErrorViewModel
     {

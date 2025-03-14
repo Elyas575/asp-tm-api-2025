@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using ThursdayMarket2025.Data;
-using ThursdayMarket2025.Models;
+using ThursdayMarket.DataAccess.Data;
+using ThursdayMarket.Models;
 
 
 namespace ThursdayMarket2025.Controllers

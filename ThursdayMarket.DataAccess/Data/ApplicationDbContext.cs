@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ThursdayMarket2025.Models;
+using ThursdayMarket.Models;
 
-namespace ThursdayMarket2025.Data
+
+namespace ThursdayMarket.DataAccess.Data
 {
     public class ApplicationDbContext : DbContext
     {

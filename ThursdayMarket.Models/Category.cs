@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ThursdayMarket2025.Models
+namespace ThursdayMarket.Models
 {
     public class Category
     {

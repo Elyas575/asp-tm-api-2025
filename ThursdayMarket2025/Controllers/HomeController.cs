@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using ThursdayMarket2025.Models;
+using ThursdayMarket.Models;
 
 namespace ThursdayMarket2025.Controllers
 {
