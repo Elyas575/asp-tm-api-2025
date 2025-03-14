@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThursdayMarket2025.Data;
+using ThursdayMarket2025.Models;
 
 
 namespace ThursdayMarket2025.Controllers
@@ -21,6 +22,14 @@ namespace ThursdayMarket2025.Controllers
         public async Task<IActionResult> Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(Category obj)
+        {
+            await _context.Categories.AddAsync(obj);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Category");
         }
     }
 }
