@@ -17,5 +17,10 @@ namespace ThursdayMarket2025.Controllers
             var categories = await _context.Categories.ToListAsync();
             return View(categories);
         }
+
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
     }
 }
