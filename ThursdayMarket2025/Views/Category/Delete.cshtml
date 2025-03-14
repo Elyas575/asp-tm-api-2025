@@ -3,27 +3,27 @@
 	<input hidden asp-for="Id" />
 	<div class="border p-3 mt-3">
 		<h2 class="text-primary">
-			Edit Category
+			Delete Category
 		</h2>
 
 		<div class="mb-3">
 			<div class="mb-3">
 				<label>Category Name</label>
-				<input asp-for="Name" class="form-control" />
+				<input asp-for="Name" disabled class="form-control" />
 				<span asp-validation-for="Name" class="text-danger"></span>
 			</div>
 
 			<div class="mb-3">
 				<label>Display Order</label>
-				<input asp-for="DisplayOrder" class="form-control" />
+				<input asp-for="DisplayOrder" disabled class="form-control" />
 				<span asp-validation-for="DisplayOrder" class="text-danger"></span>
 
 			</div>
 
 			<div class="row">
 				<div class="col-6 col-md-3">
-					<button type="submit" class="btn btn-primary form-control">
-						Edit Category
+					<button type="submit" class="btn btn-danger form-control">
+						Delete Category
 					</button>
 				</div>
 				<div class="col-6 col-md3">

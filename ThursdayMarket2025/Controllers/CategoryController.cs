@@ -38,7 +38,7 @@ namespace ThursdayMarket2025.Controllers
         }
         public async Task<IActionResult> Update(int id)
         {
-            if(id== null || id == 0)
+            if(id == null || id == 0)
             {
                 return NotFound();
             }
@@ -55,7 +55,7 @@ namespace ThursdayMarket2025.Controllers
         {
             Category categoryToUpdate = await _context.Categories.FindAsync(obj.Id);
 
-            if(categoryToUpdate == null)
+            if (obj.Id == null || obj.Id == 0)
             {
                 return NotFound("");
             }
@@ -63,9 +63,24 @@ namespace ThursdayMarket2025.Controllers
             categoryToUpdate.Name = obj.Name;
             categoryToUpdate.DisplayOrder = obj.DisplayOrder;
 
+            _context.Update(obj);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index", "Category");
         }
 
+        public async Task<IActionResult> Delete(int id)
+        {
+            Category categoryToDelete = await _context.Categories.FindAsync(id);
+            return View(categoryToDelete);
+
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(Category obj)
+        {
+             _context.Categories.Remove(obj);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index","Category");
+
+        }
     }
 }
