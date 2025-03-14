@@ -1,4 +1,6 @@
 ﻿@model List<Category>
+
+
 <div class="contaianer">
 	<div class="row pt-4">
 		<div class="col-6">
@@ -39,8 +41,8 @@
 					<td> @item.Id </td>
 					<td>
 						<div class="w-100 btn-group gap-1" role="group">
-							<a class="btn btn-primary"> Edit </a>
-							<a class="btn btn-danger"> Delete </a>
+							<a asp-controller="Category" asp-route-id="@item.Id" asp-action="Update" class="btn btn-primary"> Edit </a>
+							<a asp-controller="Category" asp-route-id="@item.Id"  asp-action="Delete" class="btn btn-danger"> Delete </a>
 						</div>
 					</td>
 				</tr>

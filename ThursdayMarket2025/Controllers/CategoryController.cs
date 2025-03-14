@@ -36,5 +36,36 @@ namespace ThursdayMarket2025.Controllers
  
             return View();
         }
+        public async Task<IActionResult> Update(int id)
+        {
+            if(id== null || id == 0)
+            {
+                return NotFound();
+            }
+
+            Category categoryToUpdate =  await _context.Categories.FindAsync(id);
+            if (categoryToUpdate == null) {
+                return NotFound();
+            }
+
+            return View(categoryToUpdate);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(Category obj)
+        {
+            Category categoryToUpdate = await _context.Categories.FindAsync(obj.Id);
+
+            if(categoryToUpdate == null)
+            {
+                return NotFound("");
+            }
+
+            categoryToUpdate.Name = obj.Name;
+            categoryToUpdate.DisplayOrder = obj.DisplayOrder;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Category");
+        }
+
     }
 }
