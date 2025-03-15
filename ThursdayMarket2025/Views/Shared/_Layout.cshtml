@@ -27,16 +27,18 @@
                             <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Content Management
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Products</a>
-                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Orders</a>
-                            </div>
-                        </li>
+                    <div class="dropdown">
+                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                         </button>
+                        <ul class="dropdown-menu dropdown-menu-white">
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Products</a>
+                            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Orders</a>
+                                    <!--  <li><hr class="dropdown-divider"></li> -->
+                            <!--  <li><a class="dropdown-item" href="#"></a></li> -->
+                        </ul>
+                    </div>
                         </li>
                     </ul>
                 </div>
