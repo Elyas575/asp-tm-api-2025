@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThursdayMarket.DataAccess.Data;
+using ThursdayMarket.DataAccess.Repository.category;
 using ThursdayMarket.Models;
 
 
-namespace ThursdayMarket2025.Controllers
+namespace ThursdayMarket2025.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public CategoryController(ApplicationDbContext context)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryController(ICategoryRepository categoryRepository)
         {
-            _context = context;
+            _categoryRepository = categoryRepository;
         }
         public async Task<IActionResult> Index()
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _categoryRepository.getAllCategories();
             return View(categories);
         }
 
@@ -29,34 +31,34 @@ namespace ThursdayMarket2025.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.Categories.AddAsync(obj);
-                _context.SaveChanges();
+                await _categoryRepository.Create(obj);
+                _categoryRepository.Save();
 
                 TempData["success"] = "Category added successfully";
                 return RedirectToAction("Index", "Category");
             }
- 
+
             return View();
         }
         public async Task<IActionResult> Update(int id)
         {
-            if(id == null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            Category categoryToUpdate =  await _context.Categories.FindAsync(id);
-            if (categoryToUpdate == null) {
+            Category categoryToUpdate = await _categoryRepository.findById(id);
+            if (categoryToUpdate == null)
+            {
                 return NotFound();
             }
-
 
             return View(categoryToUpdate);
         }
         [HttpPost]
         public async Task<IActionResult> Update(Category obj)
         {
-            Category categoryToUpdate = await _context.Categories.FindAsync(obj.Id);
+            Category categoryToUpdate = await _categoryRepository.Update(obj);
 
             if (categoryToUpdate.Id == null || categoryToUpdate.Id == 0)
             {
@@ -64,34 +66,31 @@ namespace ThursdayMarket2025.Controllers
                 return NotFound("");
             }
 
-            // TempData["error"] = "Testing Error";
-            categoryToUpdate.Name = obj.Name;
-            categoryToUpdate.DisplayOrder = obj.DisplayOrder;
-
-            _context.Update(categoryToUpdate);
-            await _context.SaveChangesAsync();
+            _categoryRepository.Save();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index", "Category");
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Category categoryToDelete = await _context.Categories.FindAsync(id);
+            Category categoryToDelete = await _categoryRepository.findById(id);
+
             return View(categoryToDelete);
 
         }
         [HttpPost, ActionName("Delete")]
 
-        public async Task<IActionResult> DeletePOST(int? id)
+        public async Task<IActionResult> DeletePOST(int id)
         {
-            Category CategoryToDelete = await _context.Categories.FindAsync(id);
+            Category CategoryToDelete = await _categoryRepository.Delete(id);
 
-            if (CategoryToDelete == null) {
+            if (CategoryToDelete == null)
+            {
                 return NotFound();
             }
-             _context.Categories.Remove(CategoryToDelete);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index","Category");
+            _categoryRepository.Save();
+
+            return RedirectToAction("Index", "Category");
         }
     }
 }
