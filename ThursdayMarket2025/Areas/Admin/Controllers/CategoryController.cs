@@ -30,12 +30,11 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 await _categoryService.Create(obj);
-                _categoryService.Save();
+               await _categoryService.Save();
 
                 TempData["success"] = "Category added successfully";
                 return RedirectToAction("Index", "Category");
             }
-
             return View();
         }
         public async Task<IActionResult> Update(int id)
@@ -44,27 +43,23 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             Category categoryToUpdate = await _categoryService.findById(id);
             if (categoryToUpdate == null)
             {
                 return NotFound();
             }
-
             return View(categoryToUpdate);
         }
         [HttpPost]
         public async Task<IActionResult> Update(Category obj)
         {
             Category categoryToUpdate = await _categoryService.Update(obj);
-
             if (categoryToUpdate.Id == null || categoryToUpdate.Id == 0)
             {
                 TempData["error"] = "Error Category not found";
                 return NotFound("");
             }
-
-            _categoryService.Save();
+            await _categoryService.Save();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index", "Category");
         }
@@ -72,7 +67,6 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             Category categoryToDelete = await _categoryService.findById(id);
-
             return View(categoryToDelete);
 
         }
@@ -86,8 +80,7 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            _categoryService.Save();
-
+            await _categoryService.Save();
             return RedirectToAction("Index", "Category");
         }
     }
