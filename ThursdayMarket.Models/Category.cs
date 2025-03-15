@@ -14,6 +14,6 @@ namespace ThursdayMarket.Models
         public int DisplayOrder { get; set; }
         public DateTime? CreatedDate { get; set; } = DateTime.Now;
         public DateTime? UpdatedDate { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
     }
 }

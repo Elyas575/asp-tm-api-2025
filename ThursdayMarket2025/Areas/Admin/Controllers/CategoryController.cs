@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ThursdayMarket.DataAccess.Data;
-using ThursdayMarket.DataAccess.Repository.category;
 using ThursdayMarket.Models;
+using ThursdayMarket.Services;
 
 
 namespace ThursdayMarket2025.Areas.Admin.Controllers
@@ -10,14 +8,14 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
     [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryController(ICategoryRepository categoryRepository)
+        private readonly ICategoryService _categoryService;
+        public CategoryController(ICategoryService categoryService)
         {
-            _categoryRepository = categoryRepository;
+            _categoryService = categoryService;
         }
         public async Task<IActionResult> Index()
         {
-            var categories = await _categoryRepository.getAllCategories();
+            var categories = await _categoryService.getAllCategories();
             return View(categories);
         }
 
@@ -31,8 +29,8 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _categoryRepository.Create(obj);
-                _categoryRepository.Save();
+                await _categoryService.Create(obj);
+                _categoryService.Save();
 
                 TempData["success"] = "Category added successfully";
                 return RedirectToAction("Index", "Category");
@@ -47,7 +45,7 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            Category categoryToUpdate = await _categoryRepository.findById(id);
+            Category categoryToUpdate = await _categoryService.findById(id);
             if (categoryToUpdate == null)
             {
                 return NotFound();
@@ -58,7 +56,7 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(Category obj)
         {
-            Category categoryToUpdate = await _categoryRepository.Update(obj);
+            Category categoryToUpdate = await _categoryService.Update(obj);
 
             if (categoryToUpdate.Id == null || categoryToUpdate.Id == 0)
             {
@@ -66,14 +64,14 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
                 return NotFound("");
             }
 
-            _categoryRepository.Save();
+            _categoryService.Save();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index", "Category");
         }
 
         public async Task<IActionResult> Delete(int id)
         {
-            Category categoryToDelete = await _categoryRepository.findById(id);
+            Category categoryToDelete = await _categoryService.findById(id);
 
             return View(categoryToDelete);
 
@@ -82,13 +80,13 @@ namespace ThursdayMarket2025.Areas.Admin.Controllers
 
         public async Task<IActionResult> DeletePOST(int id)
         {
-            Category CategoryToDelete = await _categoryRepository.Delete(id);
+            Category CategoryToDelete = await _categoryService.Delete(id);
 
             if (CategoryToDelete == null)
             {
                 return NotFound();
             }
-            _categoryRepository.Save();
+            _categoryService.Save();
 
             return RedirectToAction("Index", "Category");
         }

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using ThursdayMarket.Models;
 
-namespace ThursdayMarket.DataAccess.Repository.category
+namespace ThursdayMarket.Services
 {
-    public interface ICategoryRepository
+    public interface ICategoryService
     {
         Task<IEnumerable<Category>> getAllCategories();
         Task<Category> Create(Category category);
@@ -15,6 +15,5 @@ namespace ThursdayMarket.DataAccess.Repository.category
         Task<Category> Delete(int id);
         Task<Category> findById(int id);
         Task Save();
-
     }
 }

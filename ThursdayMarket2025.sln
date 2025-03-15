@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThursdayMarket.Models", "Th
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThursdayMarket.Utility", "ThursdayMarket.Utility\ThursdayMarket.Utility.csproj", "{DAFB0563-39FD-4FAE-8E7C-14035376390F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThursdayMarket.Services", "ThursdayMarket.Services\ThursdayMarket.Services.csproj", "{DC023547-B114-47D4-8C0E-BCB723D2305A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{DAFB0563-39FD-4FAE-8E7C-14035376390F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAFB0563-39FD-4FAE-8E7C-14035376390F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAFB0563-39FD-4FAE-8E7C-14035376390F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC023547-B114-47D4-8C0E-BCB723D2305A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC023547-B114-47D4-8C0E-BCB723D2305A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC023547-B114-47D4-8C0E-BCB723D2305A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC023547-B114-47D4-8C0E-BCB723D2305A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

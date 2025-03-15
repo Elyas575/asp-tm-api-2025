@@ -7,20 +7,20 @@ using Microsoft.EntityFrameworkCore;
 using ThursdayMarket.DataAccess.Data;
 using ThursdayMarket.Models;
 
-namespace ThursdayMarket.DataAccess.Repository.category
+namespace ThursdayMarket.Services
 {
-    public class CategoryRepository : ICategoryRepository
+    public class CategoryService : ICategoryService
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryRepository(ApplicationDbContext context)
+        public CategoryService(ApplicationDbContext context)
         {
             _context = context;
         }
 
         public async Task<Category> Create(Category category)
         {
-            await  _context.Categories.AddAsync(category);
+            await _context.Categories.AddAsync(category);
             return category;
         }
 
@@ -37,7 +37,7 @@ namespace ThursdayMarket.DataAccess.Repository.category
 
         public async Task<Category> findById(int id)
         {
-           Category  categoryToFind =  await _context.Categories.FindAsync(id);
+            Category categoryToFind = await _context.Categories.FindAsync(id);
             if (categoryToFind != null)
             {
                 return categoryToFind;

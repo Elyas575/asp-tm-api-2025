@@ -1,13 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using ThursdayMarket.DataAccess.Data;
-using ThursdayMarket.DataAccess.Repository;
-using ThursdayMarket.DataAccess.Repository.category;
+
+using ThursdayMarket.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped(typeof(ICategoryRepository), typeof(CategoryRepository));
+builder.Services.AddScoped(typeof(ICategoryService), typeof(CategoryService));
 
 
 builder.Services.AddDbContext<ApplicationDbContext>(
