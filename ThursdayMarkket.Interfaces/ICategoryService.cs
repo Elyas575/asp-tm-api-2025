@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ThursdayMarket.Models;
 
-namespace ThursdayMarket.Services
+namespace ThursdayMarkket.Interfaces
 {
     public interface ICategoryService
     {

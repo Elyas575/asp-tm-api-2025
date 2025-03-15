@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ThursdayMarket.DataAccess.Data;
 using ThursdayMarket.Models;
+using ThursdayMarkket.Interfaces;
 
 namespace ThursdayMarket.Services
 {

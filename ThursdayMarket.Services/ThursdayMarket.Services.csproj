@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ThursdayMarket.DataAccess\ThursdayMarket.DataAccess.csproj" />
     <ProjectReference Include="..\ThursdayMarket.Models\ThursdayMarket.Models.csproj" />
+    <ProjectReference Include="..\ThursdayMarkket.Interfaces\ThursdayMarkket.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

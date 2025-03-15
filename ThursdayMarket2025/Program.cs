@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using ThursdayMarket.DataAccess.Data;
 
 using ThursdayMarket.Services;
+using ThursdayMarkket.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
